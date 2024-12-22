@@ -16,24 +16,29 @@
 		<div id="game-container">
 			<h1>Rock Paper Scissors</h1>
 			<div class="button-container">
-				<button
-					id="rock"
-					onclick="playerChoiceMade('rock')"
-				>
-					Rock
-				</button>
-				<button
-					id="paper"
-					onclick="playerChoiceMade('paper')"
-				>
-					Paper
-				</button>
-				<button
-					id="scissors"
-					onclick="playerChoiceMade('scissors')"
-				>
-					Scissors
-				</button>
+				<div class="player-selection-buttons">
+					<button
+						id="rock"
+						onclick="playerChoiceMade('rock')"
+					>
+						Rock
+					</button>
+					<button
+						id="paper"
+						onclick="playerChoiceMade('paper')"
+					>
+						Paper
+					</button>
+					<button
+						id="scissors"
+						onclick="playerChoiceMade('scissors')"
+					>
+						Scissors
+					</button>
+				</div>
+				<div class="reset-button">
+					<button id="restart-button">Restart Game</button>
+				</div>
 			</div>
 			<div class="game-display">
 				<h1 id="round-winner-display"></h1>

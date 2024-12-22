@@ -6,6 +6,8 @@ let roundCount = 0;
 let roundDisplay = document.getElementById("current-round");
 let roundWinnerDisplay = document.getElementById("round-winner-display");
 
+const restartButton = document.getElementById("restart-button");
+
 const weapons = {
 	rock: { weakTo: "paper", strongTo: "scissors" },
 	paper: { weakTo: "scissors", strongTo: "rock" },
@@ -55,6 +57,18 @@ const playRound = () => {
 
 	playerHasChosen = false;
 };
+
+const restartGame = () => {
+	humanScore = 0;
+	computerScore = 0;
+	playerHasChosen = false;
+	playerChoice = null;
+	roundCount = 0;
+	roundDisplay.innerHTML = 0;
+	roundWinnerDisplay.innerHTML = "";
+};
+
+restartButton.addEventListener("click", restartGame);
 
 // Start the game
 playerChoiceMade();

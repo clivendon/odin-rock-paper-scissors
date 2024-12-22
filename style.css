@@ -93,6 +93,14 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-color: black;
+}
+
+button {
+	background-color: red;
+	width: 10rem;
+	height: 2rem;
+	border-radius: 10px;
 }
 
 #game-container {
@@ -100,12 +108,14 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	background-color: blueviolet;
 	height: 50vh;
 	width: 100vw;
 }
 
 .button-container {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	margin-top: 3em;
