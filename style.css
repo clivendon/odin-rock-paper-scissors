@@ -89,10 +89,10 @@ textarea:not([rows]) {
 	scroll-margin-block: 5ex;
 }
 
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 #game-container {
@@ -101,13 +101,23 @@ body{
 	justify-content: center;
 	align-items: center;
 	height: 50vh;
-	width: 75vw;
+	width: 100vw;
 }
 
 .button-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-    margin-top: 3em;
+	margin-top: 3em;
 	gap: 1em;
+}
+
+.game-display {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.round-display {
 }

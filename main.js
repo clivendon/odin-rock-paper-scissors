@@ -1,6 +1,16 @@
 let humanScore = 0;
 let computerScore = 0;
+let playerHasChosen = false;
+let playerChoice = null;
+let roundCount = 0;
 let roundDisplay = document.getElementById("current-round");
+let roundWinnerDisplay = document.getElementById("round-winner-display");
+
+const weapons = {
+	rock: { weakTo: "paper", strongTo: "scissors" },
+	paper: { weakTo: "scissors", strongTo: "rock" },
+	scissors: { weakTo: "rock", strongTo: "paper" },
+};
 
 const getComputerChoice = () => {
 	let cpuChoice = Math.floor(Math.random() * 3) + 1; // Generate a value between 1 and 3
@@ -15,60 +25,36 @@ const getComputerChoice = () => {
 	}
 };
 
-const playerChoice = (choice) => {
-	console.log(String(choice));
+const playerChoiceMade = (choice) => {
+	playerHasChosen = true;
+	playerChoice = choice;
+	playRound();
 };
 
 const playRound = () => {
-	const humanChoice = playerChoice();
-	const computerChoice = getComputerChoice();
-
-	if (humanChoice === computerChoice) {
-		roundDisplay.innerHTML(`It's a draw! You both selected ${humanChoice}`);
-	} else if (humanChoice === "rock" && computerChoice === "paper") {
-		computerScore++;
-		roundDisplay.innerHTML(
-			`Paper beats rock! CPU Wins! The score is Player:${humanScore} to CPU:${computerScore}`
-		);
-	} else if (humanChoice === "rock" && computerChoice === "scissors") {
-		humanScore++;
-		roundDisplay.innerHTML(
-			`Rock beats Scissors! Player Wins! The score is Player:${humanScore} to CPU:${computerScore}`
-		);
-	} else if (humanChoice === "paper" && computerChoice === "rock") {
-		humanScore++;
-		roundDisplay.innerHTML(
-			`Paper beats Rock! Player wins! The score is Player:${humanScore} to CPU:${computerScore}`
-		);
-	} else if (humanChoice === "paper" && computerChoice === "scissors") {
-		computerScore++;
-		roundDisplay.innerHTML(
-			`Scissors beats Paper! Computer wins! The score is Player:${humanScore} to CPU:${computerScore}`
-		);
-	} else if (humanChoice === "scissors" && computerChoice === "paper") {
-		humanScore++;
-		roundDisplay.innerHTML(
-			`Scissors beats Paper! Player wins! The score is Player:${humanScore} to CPU:${computerScore}`
-		);
-	} else if (humanChoice === "scissors" && computerChoice === "rock") {
-		computerScore++;
-		roundDisplay.innerHTML(
-			`Rock beats Scissors! Computer wins! The score is Player:${humanScore} to CPU:${computerScore}`
-		);
+	if (playerHasChosen && humanScore < 5 && computerScore < 5) {
+		let computerChoice = getComputerChoice();
+		if (weapons[playerChoice].strongTo === computerChoice) {
+			humanScore++;
+			roundWinnerDisplay.innerHTML = `${playerChoice} beats ${computerChoice}! Player wins! The score is now Player:${humanScore} to CPU:${computerScore}`;
+		} else if (weapons[playerChoice].weakTo === computerChoice) {
+			computerScore++;
+			roundWinnerDisplay.innerHTML = `${computerChoice} beats ${playerChoice}! CPU wins! The score is now Player:${humanScore} to CPU:${computerScore}`;
+		} else {
+			roundWinnerDisplay.innerHTML = `You both chose ${playerChoice}! It's a draw this round!`;
+		}
+		roundCount++;
+		roundDisplay.innerHTML = roundCount;
 	} else {
-		console.log("Something went wrong woopsie");
+		if (humanScore > computerScore) {
+			roundWinnerDisplay.innerHTML = `CONGRATULATIONS You've beat the computer!`;
+		} else {
+			roundWinnerDisplay.innerHTML = `Better luck next time the computer takes this one.`;
+		}
 	}
-};
 
-const displayWinner = () => {};
-
-const playGame = () => {
-	if (humanScore < 5 || computerScore < 5) {
-		playRound();
-	} else {
-		displayWinner();
-	}
+	playerHasChosen = false;
 };
 
 // Start the game
-playGame();
+playerChoiceMade();
