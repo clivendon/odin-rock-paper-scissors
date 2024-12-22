@@ -1,6 +1,8 @@
 let humanScore = 0;
 let computerScore = 0;
 
+
+
 const getComputerChoice = () => {
   let cpuChoice = Math.floor(Math.random() * 3) + 1; // Generate a value between 1 and 3
   if (cpuChoice === 1) {
@@ -14,21 +16,10 @@ const getComputerChoice = () => {
   }
 };
 
-const getHumanChoice = () => {
-  let choice = prompt("What's your choice? (Rock, Paper, or Scissors)");
-  let choiceLowercase = choice.toLocaleLowerCase();
-
-  while (
-    choiceLowercase !== "rock" &&
-    choiceLowercase !== "paper" &&
-    choiceLowercase !== "scissors"
-  ) {
-    choice = prompt("Invalid choice. Please select Rock, Paper, or Scissors");
-    choiceLowercase = choice.toLocaleLowerCase();
-  }
-
-  return choiceLowercase;
+const playerChoice = (choice) => {
+  return String(choice);
 };
+
 
 const playRound = () => {
   const humanChoice = getHumanChoice();
@@ -74,22 +65,8 @@ const playRound = () => {
 };
 
 const playGame = () => {
-  for (let round = 0; round < 5; round++) {
-    console.log(`Round ${round + 1}:`);
-    playRound();
-  }
-  if (humanScore === computerScore) {
-    console.log(`It's a tie! Both the player and CPU scored ${computerScore}`);
-  } else if (humanScore > computerScore) {
-    console.log(
-      `The humans prevail! The player wins ${humanScore} to ${computerScore}`
-    );
-  } else if (humanScore < computerScore) {
-    console.log(
-      `The computers have prevailed this time. Computer wins ${computerScore} to ${humanScore}`
-    );
-  }
-};
+  
+}
 
 // Start the game
 playGame();
