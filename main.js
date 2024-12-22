@@ -1,72 +1,74 @@
 let humanScore = 0;
 let computerScore = 0;
-
-
+let roundDisplay = document.getElementById("current-round");
 
 const getComputerChoice = () => {
-  let cpuChoice = Math.floor(Math.random() * 3) + 1; // Generate a value between 1 and 3
-  if (cpuChoice === 1) {
-    return "rock";
-  } else if (cpuChoice === 2) {
-    return "paper";
-  } else if (cpuChoice === 3) {
-    return "scissors";
-  } else {
-    console.log("Error in getComputerChoice() function");
-  }
+	let cpuChoice = Math.floor(Math.random() * 3) + 1; // Generate a value between 1 and 3
+	if (cpuChoice === 1) {
+		return "rock";
+	} else if (cpuChoice === 2) {
+		return "paper";
+	} else if (cpuChoice === 3) {
+		return "scissors";
+	} else {
+		console.log("Error in getComputerChoice() function");
+	}
 };
 
 const playerChoice = (choice) => {
-  return String(choice);
+	console.log(String(choice));
 };
-
 
 const playRound = () => {
-  const humanChoice = getHumanChoice();
-  const computerChoice = getComputerChoice();
+	const humanChoice = playerChoice();
+	const computerChoice = getComputerChoice();
 
-  if (humanChoice === computerChoice) {
-    console.log(
-      `It's a draw! The score is Player:${humanScore} to CPU:${computerScore}`
-    );
-  } else if (humanChoice === "rock" && computerChoice === "paper") {
-    computerScore++;
-    console.log(
-      `Paper beats Rock! Computer wins! The score is Player:${humanScore} to CPU:${computerScore}`
-    );
-  } else if (humanChoice === "rock" && computerChoice === "scissors") {
-    humanScore++;
-    console.log(
-      `Rock beats Scissors! Player wins! The score is Player:${humanScore} to CPU:${computerScore}`
-    );
-  } else if (humanChoice === "paper" && computerChoice === "rock") {
-    humanScore++;
-    console.log(
-      `Paper beats Rock! Player wins! The score is Player:${humanScore} to CPU:${computerScore}`
-    );
-  } else if (humanChoice === "paper" && computerChoice === "scissors") {
-    computerScore++;
-    console.log(
-      `Scissors beats Paper! Computer wins! The score is Player:${humanScore} to CPU:${computerScore}`
-    );
-  } else if (humanChoice === "scissors" && computerChoice === "paper") {
-    humanScore++;
-    console.log(
-      `Scissors beats Paper! Player wins! The score is Player:${humanScore} to CPU:${computerScore}`
-    );
-  } else if (humanChoice === "scissors" && computerChoice === "rock") {
-    computerScore++;
-    console.log(
-      `Rock beats Scissors! Computer wins! The score is Player:${humanScore} to CPU:${computerScore}`
-    );
-  } else {
-    console.log("Something went wrong woopsie");
-  }
+	if (humanChoice === computerChoice) {
+		roundDisplay.innerHTML(`It's a draw! You both selected ${humanChoice}`);
+	} else if (humanChoice === "rock" && computerChoice === "paper") {
+		computerScore++;
+		roundDisplay.innerHTML(
+			`Paper beats rock! CPU Wins! The score is Player:${humanScore} to CPU:${computerScore}`
+		);
+	} else if (humanChoice === "rock" && computerChoice === "scissors") {
+		humanScore++;
+		roundDisplay.innerHTML(
+			`Rock beats Scissors! Player Wins! The score is Player:${humanScore} to CPU:${computerScore}`
+		);
+	} else if (humanChoice === "paper" && computerChoice === "rock") {
+		humanScore++;
+		roundDisplay.innerHTML(
+			`Paper beats Rock! Player wins! The score is Player:${humanScore} to CPU:${computerScore}`
+		);
+	} else if (humanChoice === "paper" && computerChoice === "scissors") {
+		computerScore++;
+		roundDisplay.innerHTML(
+			`Scissors beats Paper! Computer wins! The score is Player:${humanScore} to CPU:${computerScore}`
+		);
+	} else if (humanChoice === "scissors" && computerChoice === "paper") {
+		humanScore++;
+		roundDisplay.innerHTML(
+			`Scissors beats Paper! Player wins! The score is Player:${humanScore} to CPU:${computerScore}`
+		);
+	} else if (humanChoice === "scissors" && computerChoice === "rock") {
+		computerScore++;
+		roundDisplay.innerHTML(
+			`Rock beats Scissors! Computer wins! The score is Player:${humanScore} to CPU:${computerScore}`
+		);
+	} else {
+		console.log("Something went wrong woopsie");
+	}
 };
 
+const displayWinner = () => {};
+
 const playGame = () => {
-  
-}
+	if (humanScore < 5 || computerScore < 5) {
+		playRound();
+	} else {
+		displayWinner();
+	}
+};
 
 // Start the game
 playGame();
